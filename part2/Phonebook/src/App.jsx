@@ -3,11 +3,14 @@ import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
 import Persons from './components/Persons'
 import phonebookService from './services/phonebook'
+import Notification from './components/Notification'
 const App=()=>{
   const[persons,setPersons]=useState([])
   const[newName,setNewName]=useState('hy')
   const[newNumber,setNewNumber]=useState('09')
   const[filter,setfilter]=useState('')
+  const[message,setMessage]=useState(null)
+  const[messageType,setMessageType]=useState('success')
 
   useEffect(()=>{phonebookService.getAll().then(intialPersons=>setPersons(intialPersons))},[])
   const addPerson=(event)=>{
@@ -19,10 +22,14 @@ const App=()=>{
        phonebookService.update(existingPerson.id,changedPerson)
           .then(returnedPerson=>{
             setPersons(persons.map(p=>p.id!==existingPerson.id?p:returnedPerson))
+            setMessage(`The phone number for ${existingPerson.name}  changed to ${newNumber}`)
+            setTimeout(()=>{setMessage(null)},4000)
             setNewName('')
             setNewNumber('')
           }).catch(()=>{
-            alert(`Information of ${existingPerson.name} has already been removed from server`)
+            setMessage(`Information of ${existingPerson.name} has already been removed from server`)
+            setMessageType('error')
+            setTimeout(()=>{setMessage(null)},2000)
             setPersons(persons.filter(p => p.id !== existingPerson.id))
           })
      }
@@ -32,10 +39,15 @@ const App=()=>{
     name:newName,
     number:newNumber,
    }
-    phonebookService.create(personObject).then(returnedData=>setPersons(persons.concat(returnedData)),
+    phonebookService.create(personObject).then(returnedData=>{setPersons(persons.concat(returnedData)),
+      setMessage(`added ${personObject.name}`)
+      setMessageType('success')
+      setTimeout(()=>setMessage(null),3000)
       setNewName(''),
-      setNewNumber(''))
-
+      setNewNumber('')
+    }
+    )
+    
   }
   
   const handleNameChange=(event)=>{
@@ -51,8 +63,13 @@ const App=()=>{
    const person=persons.find(p=>p.id===id)
    if(window.confirm(`Delete ${person.name} ?`)){
     phonebookService.Delete(id)
-    .then(()=>{setPersons(persons.filter(person=>person.id!==id))}).catch(error=>{
-      console.log('we could not delete the person',error )
+    .then(
+      ()=>{setPersons(persons.filter(person=>person.id!==id))
+      setMessage(`deleted ${person.name}`)
+      setMessageType('success')
+      setTimeout(()=>setMessage(null),3000)}).catch(error=>{
+      setMessage('we could not delete the person',error )
+      
     })
 
   }
@@ -62,6 +79,7 @@ const App=()=>{
   return(
       <div>
       <h2>Phonebook</h2>
+      <Notification message={message} type={messageType}/>
       <Filter filter={filter} handleFilterChange={handleFilterChange}/>
       <h2>Add a New</h2>
       <PersonForm addPerson={addPerson} newName={newName} newNumber={newNumber} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange}/>

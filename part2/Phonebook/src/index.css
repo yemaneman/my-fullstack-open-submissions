@@ -1,0 +1,20 @@
+.notificationMessage {
+  color: rgba(77, 251, 38, 0.642);
+  background: rgb(254, 253, 253);
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.errorMessage {
+  color: red; /* Error/Delete color */
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
