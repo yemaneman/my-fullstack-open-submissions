@@ -4,9 +4,8 @@ This repository contains my submissions and exercise solutions for Full Stack Op
 
 ## 🚀 Live Application
 
-- **Direct URL:** [https://my-fullstack-open-submissions-2.onrender.com](https://my-fullstack-open-submissions-2.onrender.com)
-- **App Link:** [Live Phonebook Application]((https://fullstackopen-part3-4hvq.onrender.com/))
-
+- - **Repository/Backend URL:** [https://fullstackopen-part3-4hvq.onrender.com/](https://fullstackopen-part3-4hvq.onrender.com/)
+- **App Link:** [Live Phonebook Application](https://fullstackopen-part3-4hvq.onrender.com/)
 ## 📁 Repository Structure
 
 * `part1/` - Introduction to React
