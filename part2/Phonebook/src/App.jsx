@@ -77,7 +77,7 @@ const App=()=>{
   const personsToShow=persons.filter(person=>person.name.toLowerCase().includes(filter.toLowerCase()))
  
   return(
-      <div>
+      <div className='phonebook-container'>
       <h2>Phonebook</h2>
       <Notification message={message} type={messageType}/>
       <Filter filter={filter} handleFilterChange={handleFilterChange}/>
