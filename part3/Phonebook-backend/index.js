@@ -35,8 +35,8 @@ app.put('/api/persons/:id', (request, response, next) => {
 
   // Find the person by ID and update them
   Person.findByIdAndUpdate(
-    request.params.id, 
-    { name, number }, 
+    request.params.id,
+    { name, number },
     { returnDocument: 'after', runValidators: true }
   )
     .then(updatedPerson => {
@@ -48,6 +48,7 @@ app.put('/api/persons/:id', (request, response, next) => {
     })
     .catch(error => next(error))
 })
+
 
 // GET single person by ID from MongoDB
 app.get('/api/persons/:id', (request, response, next) => {
@@ -65,7 +66,7 @@ app.get('/api/persons/:id', (request, response, next) => {
 // DELETE person from MongoDB
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
-    .then(result => {
+    .then(() => {
       response.status(204).end()
     })
     .catch(error => next(error))
@@ -76,8 +77,8 @@ app.post('/api/persons', (request, response, next) => {
   const body = request.body
 
   if (!body.name || !body.number) {
-    return response.status(400).json({ 
-      error: 'name or number missing' 
+    return response.status(400).json({
+      error: 'name or number missing'
     })
   }
 
@@ -85,8 +86,8 @@ app.post('/api/persons', (request, response, next) => {
   Person.findOne({ name: body.name })
     .then(existingPerson => {
       if (existingPerson) {
-        return response.status(400).json({ 
-          error: 'name must be unique' 
+        return response.status(400).json({
+          error: 'name must be unique'
         })
       }
 

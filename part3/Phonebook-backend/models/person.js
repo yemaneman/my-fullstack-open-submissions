@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
 // Use your connection string (Note: since your DNS SRV lookup worked earlier or failed, use whatever works reliably, but keeping your format here)
-const url = process.env.MONGODB_URI;
+const url = process.env.MONGODB_URI
 mongoose.set('strictQuery', false)
 mongoose.connect(url, { family: 4 })
 
@@ -11,16 +11,16 @@ const personSchema = new mongoose.Schema({
     minlength:3,
     required :true
   },
-    number:{
-      type:String,
-      validate: {
+  number:{
+    type:String,
+    validate: {
       validator: function(v) {
         // Checks if it matches 2-3 digits, a hyphen, and has a total length of at least 8
-        return /^\d{2,3}-\d+$/.test(v) && v.length >= 8;
+        return /^\d{2,3}-\d+$/.test(v) && v.length >= 8
       },
       message: props => `${props.value} is not a valid phone number! It must be at least 8 characters long and formatted as XX-XXXXXX or XXX-XXXXX.`
     }
-}
+  }
 })
 
 // Add toJSON transformation so _id becomes id and __v is deleted (crucial for Full Stack Open frontend compatibility)
@@ -49,7 +49,7 @@ if (require.main === module) {
     number: number,
   })
 
-  person.save().then(result => {
+  person.save().then(() => {
     console.log(`added ${name} number ${number} to phonebook`)
     mongoose.connection.close()
   })
