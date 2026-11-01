@@ -46,6 +46,12 @@ const App=()=>{
       setNewName(''),
       setNewNumber('')
     }
+    ).catch(
+      (error)=>{
+            setMessage(error.response.data.error)
+            setMessageType('error')
+            setTimeout(()=>{setMessage(null)},3000)
+          }
     )
     
   }
