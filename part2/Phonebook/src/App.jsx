@@ -23,11 +23,12 @@ const App=()=>{
           .then(returnedPerson=>{
             setPersons(persons.map(p=>p.id!==existingPerson.id?p:returnedPerson))
             setMessage(`The phone number for ${existingPerson.name}  changed to ${newNumber}`)
+            setMessageType('success')
             setTimeout(()=>{setMessage(null)},4000)
             setNewName('')
             setNewNumber('')
-          }).catch(()=>{
-            setMessage(`Information of ${existingPerson.name} has already been removed from server`)
+          }).catch((error)=>{
+            setMessage(error.response.data.error)
             setMessageType('error')
             setTimeout(()=>{setMessage(null)},2000)
             setPersons(persons.filter(p => p.id !== existingPerson.id))
