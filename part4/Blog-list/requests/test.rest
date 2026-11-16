@@ -1,9 +1,9 @@
-POST       http://localhost:3001/api/blogs
+POST       http://localhost:3001/api/users
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InllbWFuZW1pZXNobzEiLCJpZCI6IjZhZjczMGZhYjNmODhhZDYxNDVjZTE4YyIsImlhdCI6MTc5NDU4NTY1OX0.Bzq9eTVaTlDleXGmompLwbFghnM7y34IXzZrGleH9TE
 
 {  
- "title":"yemanemiesho1",
- "likes":"5",
- "url":"yemaneman"
+ "username":"yemane",
+ "name":"yemane",
+ "password":"yemane"
 }
