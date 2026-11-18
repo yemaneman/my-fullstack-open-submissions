@@ -148,7 +148,12 @@ button:active {
   overflow-wrap: break-word; /* Breaks long text strings onto the next line */
   word-break: break-word;
 }
-
+.blog-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;          /* Adds space between each new line */
+  margin-top: 10px;  /* Separates the details from the title row */
+}
 .blog-title {
   font-weight: 700;
   font-size: 1.05rem;
@@ -161,7 +166,55 @@ button:active {
   font-size: 0.9rem;
   white-space: nowrap; /* Keeps "by Author Name" together if possible */
 }
+.blog-url {
+  color: #3182ce;
+  text-decoration: none;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
 
+.blog-url:hover {
+  text-decoration: underline;
+}
+
+.blog-likes {
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+/* Button Styles */
+.btn-toggle {
+  background-color: #edf2f7;
+  color: #2d3748;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-toggle:hover {
+  background-color: #e2e8f0;
+}
+
+.btn-delete {
+  background-color: #fed7d7;
+  color: #9b2c2c;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  width: fit-content;
+  transition: background-color 0.2s;
+}
+
+.btn-delete:hover {
+  background-color: #feb2b2;
+}
 /* Notifications */
 .notificationMessage {
   color: #276749;
